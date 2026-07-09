@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jigyasa Hasija — Research Portfolio</title>
+<meta name="description" content="Jigyasa Hasija — incoming Georgia Tech M.S. CS student working at the intersection of sustainable computing architectures and secure, robust AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6F7F5;
+    --bg: #F2F7FC;
+    --ink: #14181C;
+    --navy: #1E3A5F;
+    --brass: #7D5E26;
+    --rule: #D8DAD5;
+    --muted: #5C6570;
+    --serif: 'Spectral', Georgia, 'Times New Roman', serif;
+    --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(2.25rem, 5vw, 3.5rem) 1.5rem 5rem;
+  }
+
+  /* ===== Editorial masthead band ===== */
+  .masthead-band {
+    background: var(--navy);
+    color: var(--paper);
+    padding: clamp(2.5rem, 6vw, 4rem) 0;
+    border-bottom: 4px solid #33578A;
+  }
+  .band-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+  }
+  .band-text { flex: 1; min-width: 0; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(246, 247, 245, 0.65);
+    margin: 0 0 0.9rem;
+    font-weight: 500;
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--paper);
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    margin: 0 0 0.55rem;
+    animation: rise 0.6s ease-out;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .name { animation: none; }
+  }
+
+  .affiliation {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: rgba(246, 247, 245, 0.72);
+    margin: 0 0 1.5rem;
+  }
+
+  .portrait {
+    width: 172px;
+    height: 172px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    border: 3px solid rgba(246, 247, 245, 0.9);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.30);
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    margin: 0;
+  }
+  .contact-row a {
+    color: rgba(246, 247, 245, 0.7);
+    display: inline-flex;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .contact-row a:hover,
+  .contact-row a:focus-visible { color: var(--paper); transform: translateY(-2px); }
+  .contact-row svg { width: 21px; height: 21px; fill: currentColor; display: block; }
+  .contact-row .resume {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(246, 247, 245, 0.45);
+    color: rgba(246, 247, 245, 0.8);
+    padding: 0.28rem 0.65rem;
+    border-radius: 3px;
+  }
+  .contact-row .resume:hover,
+  .contact-row .resume:focus-visible { color: var(--paper); border-color: var(--paper); transform: none; }
+
+  @media (max-width: 560px) {
+    .band-inner { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; }
+    .portrait { width: 124px; height: 124px; }
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--navy);
+    outline-offset: 3px;
+  }
+
+  .rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.75rem 0;
+  }
+
+  /* Intro */
+  .intro { margin-bottom: 0.5rem; }
+  .lede {
+    margin: 0 0 1.1rem;
+    max-width: 640px;
+  }
+  .lede:last-of-type { margin-bottom: 0; }
+
+  .seeking {
+    max-width: 640px;
+    border-left: 3px solid var(--navy);
+    background: rgba(30, 58, 95, 0.07);
+    padding: 0.9rem 1.2rem;
+    border-radius: 0 3px 3px 0;
+    margin: 1.4rem 0 0;
+  }
+  .seeking p { margin: 0; }
+
+  /* Sections */
+  .numbered { display: block; }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1.25rem;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0 0.15em;
+    background: linear-gradient(transparent 62%, rgba(30, 58, 95, 0.18) 62%);
+  }
+  .subhead {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 500;
+    margin: 1.5rem 0 0.6rem;
+  }
+  .subhead:first-of-type { margin-top: 0; }
+
+  .tag-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+  }
+  .tag-list li {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    background: rgba(30, 58, 95, 0.06);
+    color: var(--ink);
+    padding: 0.28rem 0.65rem;
+    border-radius: 2px;
+  }
+
+  .work-entry {
+    margin: 0 0 2rem;
+  }
+  .work-title {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 0.3rem;
+  }
+  .work-meta {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  .focus-tag {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--navy);
+    margin: 0.5rem 0 0.4rem;
+  }
+  .work-entry p { margin: 0.4rem 0; }
+  .work-entry a { color: var(--navy); }
+
+  /* Detail lists */
+  .prose-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.6rem 0 0;
+  }
+  .prose-list li {
+    position: relative;
+    padding-left: 1.15rem;
+    margin: 0 0 0.5rem;
+  }
+  .prose-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--navy);
+  }
+  .prose-list strong { color: var(--ink); }
+  .prose-list li:last-child { margin-bottom: 0; }
+
+  /* Book lists get a small book marker instead of the dash */
+  .prose-list.books li { padding-left: 1.5rem; }
+  .prose-list.books li::before { content: "📖"; font-size: 0.8rem; top: 0.05rem; }
+
+  .conference {
+    border-left: 3px solid var(--navy);
+    background: rgba(30, 58, 95, 0.05);
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 3px 3px 0;
+    margin-top: 1rem;
+    font-size: 0.97rem;
+  }
+  .conference p { margin: 0; }
+
+  .quote {
+    margin: 0.6rem 0 1rem;
+    padding: 0.1rem 0 0.1rem 1.1rem;
+    border-left: 3px solid var(--navy);
+    font-style: italic;
+    color: var(--ink);
+  }
+  .quote p { margin: 0 0 0.45rem; }
+  .quote cite {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .beyond-block { margin-bottom: 1.75rem; }
+  .beyond-block:last-child { margin-bottom: 0; }
+  .beyond-head {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .callout {
+    border-left: 3px solid var(--navy);
+    background: rgba(30, 58, 95, 0.07);
+    padding: 1.1rem 1.3rem;
+    border-radius: 0 3px 3px 0;
+  }
+  .callout p { margin: 0; }
+
+  .colophon {
+    margin-top: 3.5rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .colophon a { color: var(--navy); }
+  .colophon p { margin: 0 0 0.4rem; }
+
+</style>
+</head>
+<body>
+
+  <header class="masthead-band">
+    <div class="band-inner">
+      <div class="band-text">
+        <h1 class="name">Hi, I am Jigyasa!</h1>
+        <p class="affiliation">Georgia Institute of Technology · M.S. Computer Science · Incoming Fall 2026</p>
+        <div class="contact-row">
+          <a href="https://github.com/jigyasahasija" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .321.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/jigyasa-hasija" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.goodreads.com/user/show/31639442-jigyasa-hasija" target="_blank" rel="noopener noreferrer" title="Goodreads" aria-label="Goodreads">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M11.43 23.995c-3.608-.208-6.274-2.077-6.448-5.078.695.007 1.375-.013 2.07-.007.224 1.342 1.065 2.43 2.683 3.026 1.583.496 3.737.481 5.082-.148 1.351-.612 2.115-1.72 2.503-3.7.222-1.114.222-1.978.222-2.777v-1.024c-.947 1.831-2.564 2.865-4.771 2.865-4.334 0-7.02-3.311-7.02-7.808 0-4.499 2.686-7.856 7.02-7.856 2.207 0 3.824 1.033 4.771 2.859V1.005h2.278v14.678c0 1.089-.148 2.06-.415 2.995-.474 1.607-1.541 2.703-3.011 3.35-1.379.609-3.007.887-4.766.887-.324 0-.647-.011-.971-.023l-.5-.03zm.088-8.65c3.253 0 5.05-2.611 5.05-5.727 0-3.116-1.797-5.727-5.05-5.727-3.164 0-4.943 2.578-4.943 5.727 0 3.15 1.779 5.727 4.943 5.727z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/hasijaaaa" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="mailto:jhasija3@gatech.edu" title="Email" aria-label="Email">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M1.5 5.25A2.25 2.25 0 013.75 3h16.5a2.25 2.25 0 012.25 2.25v.383l-10.5 6.3-10.5-6.3V5.25zM1.5 7.66V18.75A2.25 2.25 0 003.75 21h16.5a2.25 2.25 0 002.25-2.25V7.66l-10.02 6.012a1.5 1.5 0 01-1.46 0L1.5 7.66z"/></svg>
+          </a>
+          <a class="resume" href="resume.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+        </div>
+      </div>
+      <img class="portrait" src="portrait.jpg" alt="Jigyasa Hasija" width="172" height="172">
+    </div>
+  </header>
+
+  <div class="page">
+
+    <section class="intro">
+      <p class="lede">
+        I am an incoming M.S. CS student at Georgia Tech with four years of industry software
+        engineering experience specializing in distributed backend infrastructure, cloud reliability,
+        and data compliance networks.
+      </p>
+      <p class="lede">
+        My academic and research interests lie at the intersection of <strong>Sustainable Computing
+        Architectures</strong> and <strong>Secure, Robust AI</strong>. I am driven by a central
+        question: how can we architect large-scale or agentic computing pipelines to maximize hardware
+        and energy efficiency while guaranteeing adversarial security and fault tolerance?
+      </p>
+      <div class="seeking">
+        <p>
+          I am actively seeking research opportunities
+          within Georgia Tech's computer systems, security, and AI labs.
+        </p>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="numbered">
+      <div>
+        <h2 class="section-title">Research Experience</h2>
+
+        <article class="work-entry">
+          <h3 class="work-title">FPGA Implementation of Residue Number System based Digital Differentiator</h3>
+          <p class="work-meta">Undergraduate Research · Advised by Prof. Tarun Kumar Rawat · Netaji Subhas Institute of Technology</p>
+          <ul class="prose-list">
+            <li><strong>The Problem:</strong> Traditional binary arithmetic introduces severe
+              computational carry-propagation delays and power overheads when executing high-frequency
+              digital signal processing on resource-constrained or edge devices.</li>
+            <li><strong>The Approach:</strong> Evaluated alternative mathematical frameworks by
+              designing and implementing a full-band Digital Differentiator using a three-moduli
+              Residue Number System (RNS). Built the underlying hardware description architectures in
+              Verilog HDL and simulated execution workflows on an Artix-7 FPGA target using the Xilinx
+              Vivado design suite.</li>
+            <li><strong>The Outcome:</strong> Demonstrated that custom-tailored RNS modular structures
+              compress arithmetic bottlenecks and decrease total processing time for edge digital
+              systems compared to standard infinite impulse response configurations.</li>
+          </ul>
+          <div class="conference">
+            <p><strong>Conference Presentation:</strong> &ldquo;FPGA Implementation of Residue Number
+              System based Digital Differentiator&rdquo; — peer-reviewed and presented at The
+              International Conference on Signal Processing, VLSI and Communication Engineering
+              (ICSPVCE), Delhi Technological University.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="numbered">
+      <div>
+        <h2 class="section-title">Selected Engineering &amp; Systems Projects</h2>
+
+        <article class="work-entry">
+          <h3 class="work-title">Agentic Workflow Frameworks via Model Context Protocol (MCP)</h3>
+          <p class="work-meta">Software Development Engineer · Veeam</p>
+          <p class="focus-tag">Focus: LLM Tool Use · Protocol Optimization · Resilient System Automation</p>
+          <ul class="prose-list">
+            <li>Architected proof-of-concepts exploring the integration of Anthropic's Model Context
+              Protocol (MCP) with TypeScript-based browser automation engines.</li>
+            <li>Evaluated the reliability and failure boundaries of frontier models (Claude) in
+              autonomously orchestrating and generating complex end-to-end UI verification flows from
+              high-level natural language intent, optimizing tool-calling efficiency.</li>
+          </ul>
+        </article>
+
+        <article class="work-entry">
+          <h3 class="work-title">Distributed Caching &amp; Multi-Tenant Vulnerability Remediation</h3>
+          <p class="work-meta">Software Development Engineer · Microsoft Security Organization</p>
+          <p class="focus-tag">Focus: Large-Scale Cloud Systems · System Reliability · Software Security</p>
+          <ul class="prose-list">
+            <li>Authored a technical design paper evaluating distributed caching strategies for a
+              compliance-management service to mitigate heavy API latency bottlenecks.</li>
+            <li>Re-engineered critical backend services and multi-tenant distributed endpoints using
+              .NET and Azure, reducing p95 latency by up to 5 seconds while sustaining a 98%+ system
+              reliability rate.</li>
+            <li>Remediated high-impact cloud security vulnerabilities under a company-wide secure
+              future initiative, analyzing data boundaries to enforce robust data protection and
+              isolation standards.</li>
+          </ul>
+        </article>
+
+        <article class="work-entry">
+          <h3 class="work-title">Low-Overhead Infrastructure Provisioning &amp; Automation Pipelines</h3>
+          <p class="work-meta">Engineer · Samsung R&amp;D Institute</p>
+          <p class="focus-tag">Focus: Infrastructure as Code (IaC) · Pipeline Efficiency · Resource Optimization</p>
+          <ul class="prose-list">
+            <li>Audited multi-tier system environments to eliminate deployment constraints and
+              optimize manual provisioning overhead.</li>
+            <li>Programmed automated cloud infrastructure blueprints using the AWS Cloud Development
+              Kit (CDK), cutting environment setup time latency by 80%.</li>
+            <li>Overhauled application delivery mechanisms by engineering CI/CD automation pipelines
+              for serverless AWS Lambda functions, decreasing deployment cycle times by 75%.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="numbered">
+      <div>
+        <h2 class="section-title">Technical Stack</h2>
+
+        <h3 class="subhead">Systems &amp; Distributed Computing</h3>
+        <ul class="tag-list">
+          <li>C#</li>
+          <li>Java</li>
+          <li>Python</li>
+          <li>C++</li>
+          <li>Spring Boot</li>
+          <li>.NET</li>
+          <li>RESTful APIs</li>
+          <li>SQL</li>
+          <li>KQL</li>
+        </ul>
+
+        <h3 class="subhead">Cloud &amp; Infrastructure</h3>
+        <ul class="tag-list">
+          <li>Azure (Durable Functions, CosmosDB, Kusto)</li>
+          <li>AWS (Lambda, CDK, CloudWatch)</li>
+        </ul>
+
+        <h3 class="subhead">Hardware &amp; Edge Environments</h3>
+        <ul class="tag-list">
+          <li>Verilog HDL</li>
+          <li>Xilinx Vivado</li>
+          <li>System Generator for DSP</li>
+          <li>MATLAB</li>
+          <li>Embedded C</li>
+        </ul>
+
+        <h3 class="subhead">Emerging AI Architecture</h3>
+        <ul class="tag-list">
+          <li>Model Context Protocol (MCP)</li>
+          <li>Claude Code</li>
+          <li>Prompt Engineering</li>
+          <li>Agentic Tool Workflows</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="numbered">
+      <div>
+        <h2 class="section-title">Beyond the Lab</h2>
+
+        <div class="beyond-block">
+          <h3 class="beyond-head">🩰 Creative Discipline &amp; Resilience</h3>
+          <p>
+            I am a trained Jazz dancer. I approach system architectures much like
+            choreography — both demand precise timing, physical or computational constraints, and
+            structural alignment. When forced into long periods of physical stillness due to three
+            separate ankle fractures, I used that time to independently master advanced data structures
+            and transition my technical focus from hardware engineering to software systems.
+          </p>
+        </div>
+
+        <div class="beyond-block">
+          <h3 class="beyond-head">📚 When My Monitor is Off (My Reading Stack)</h3>
+          <p>
+            I read a lot — usually tracking huge yearly goal across fiction, essays, memoirs, and
+            science. You can take a peek at my full shelf of over 500 books on
+            <a href="https://www.goodreads.com/user/show/31639442-jigyasa-hasija" target="_blank" rel="noopener noreferrer">Goodreads</a>,
+            but here is a quick snapshot of what's currently on my desk:
+          </p>
+
+          <h4 class="subhead">Curiously flipping through right now</h4>
+          <ul class="prose-list books">
+            <li><em>Our Evenings</em> by Alan Hollinghurst, savoring its beautifully layered,
+              atmospheric storytelling.</li>
+            <li><em>The Hare with Amber Eyes</em> by Edmund de Waal (A fascinatingly detailed trace
+              of a hidden inheritance across generations)</li>
+            <li><em>A Brief History of Black Holes</em> by Becky Smethurst, because sometimes software
+              systems aren't complex enough, so I check in on space-time singularities.</li>
+          </ul>
+
+          <h4 class="subhead">A few all-time favorites</h4>
+          <p>I'm drawn to rich world-building, multi-generational sagas, sharp prose, and books about
+            books. A few of my favorites:</p>
+          <ul class="prose-list books">
+            <li><strong>Classics:</strong> <em>Emma</em> by Jane Austen · <em>Madonna in a Fur Coat</em> by Sabahattin Ali</li>
+            <li><strong>Literary fiction:</strong> <em>All Passion Spent</em> by Vita Sackville-West · <em>East of Eden</em> by John Steinbeck</li>
+            <li><strong>Non-fiction:</strong> <em>Mother Mary Comes to Me</em> by Arundhati Roy · <em>Dead and Alive</em> (essays) by Zadie Smith</li>
+            <li><strong>Books about books:</strong> <em>Diary of a Bookseller</em> by Shaun Bythell · <em>The Girl Who Ate Books</em> by Nilanjana Roy</li>
+          </ul>
+
+          <h4 class="subhead">Why this matters to me</h4>
+          <blockquote class="quote">
+            <p>&ldquo;I am fascinated to presume, as a reader, that many types of people, strange to
+              me in life, might be revealed, through the intimate space of fiction, to have griefs
+              not unlike my own. And so I read.&rdquo;</p>
+            <cite>— Zadie Smith</cite>
+          </blockquote>
+          <p>
+            That line resonates with me deeply. Reading is how I travel to places I could never go -
+            Rome in the 1970s, quiet UK villages of the 1800s. It's how I come to know about fascinating
+            things: antiquarian books, art, black holes, bookshops across the world, and endless new
+            ideas. Every book leaves me a little more curious than it found me.
+            And that, more than anything, is something I can't replace.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      <p>Correspondence to <a href="mailto:jhasija3@gatech.edu">jhasija3@gatech.edu</a>. Also on
+        <a href="https://github.com/jigyasahasija" target="_blank" rel="noopener noreferrer">GitHub</a> and
+        <a href="https://www.linkedin.com/in/jigyasa-hasija" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+      <p>Last updated July 2026</p>
+    </footer>
+
+  </div>
+</body>
+</html>
