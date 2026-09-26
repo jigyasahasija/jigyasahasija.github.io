@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jigyasa Hasija — Papers</title>
+<meta name="description" content="Jigyasa Hasija's reading list: papers read, papers of interest, and papers currently being read.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #E8EEF0;
+    --bg: #18252D;
+    --ink: #E5EBEA;
+    --navy: #244451;
+    --brass: #D4A64A;
+    --rule: #33424B;
+    --muted: #A4B0B4;
+    --link: #83B8C8;
+    --deep: #10212A;
+    --serif: 'Spectral', Georgia, 'Times New Roman', serif;
+    --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    background-image: linear-gradient(rgba(190, 215, 220, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(190, 215, 220, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .masthead-band {
+    background: var(--deep);
+    color: var(--paper);
+    padding: clamp(2rem, 5vw, 3rem) 0;
+    border-bottom: 4px solid #1B303A;
+  }
+  .band-inner, .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .band-inner { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; }
+  .eyebrow, .meta, .status, nav a {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .eyebrow { color: rgba(246, 247, 245, 0.68); margin: 0 0 0.5rem; }
+  h1, h2, h3 { font-weight: 600; }
+  h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin: 0; }
+  .back-link { color: rgba(246, 247, 245, 0.8); font-family: var(--mono); font-size: 0.76rem; text-decoration: none; white-space: nowrap; }
+  .back-link:hover, .back-link:focus-visible { color: var(--paper); text-decoration: underline; }
+  .page { padding-top: clamp(2.25rem, 5vw, 3.5rem); padding-bottom: 5rem; }
+  .intro { max-width: 640px; margin-bottom: 2.5rem; }
+  .intro p { margin: 0; }
+  .rule { border: none; border-top: 1px solid var(--rule); margin: 2.75rem 0; }
+  .section-title {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    margin: 0 0 1.25rem;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.35rem 0.7rem;
+    border-left: 3px solid var(--navy);
+    background: rgba(30, 58, 95, 0.07);
+    text-transform: uppercase;
+  }
+  .paper-section { margin-bottom: 2.75rem; }
+  .paper-section:last-child { margin-bottom: 0; }
+  .status { color: var(--brass); margin: 0 0 0.55rem; }
+  .empty-state {
+    border-left: 3px solid var(--navy);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 1rem 1.2rem;
+    max-width: 640px;
+  }
+  .empty-state p { margin: 0; }
+  .paper-entry { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 1rem; }
+  .paper-entry h3 { font-size: 1.12rem; margin: 0 0 0.25rem; }
+  .paper-entry h3 a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .paper-entry h3 a:hover, .paper-entry h3 a:focus-visible { color: var(--link); }
+  .paper-entry p { margin: 0.35rem 0 0; }
+  .paper-entry .meta { color: var(--muted); letter-spacing: 0.04em; text-transform: none; }
+  .colophon { margin-top: 3.5rem; color: var(--muted); font-family: var(--mono); font-size: 0.8rem; }
+  .colophon a { color: var(--link); }
+  a:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  @media (max-width: 560px) {
+    .band-inner { display: block; }
+    .back-link { display: inline-block; margin-top: 1rem; }
+  }
+</style>
+</head>
+<body>
+  <header class="masthead-band">
+    <div class="band-inner">
+      <div>
+        <p class="eyebrow">Reading log · Research notes</p>
+        <h1>Papers</h1>
+      </div>
+      <a class="back-link" href="index.html">← Back to portfolio</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="intro" aria-labelledby="page-intro">
+      <h2 id="page-intro" class="section-title">A working reading list</h2>
+      <p>This is a space for papers that shape my thinking about multi-agent systems, agent security, distributed systems, and reliable autonomy.</p>
+    </section>
+
+    <section class="paper-section" aria-labelledby="read-title">
+      <h2 id="read-title" class="section-title">Papers I Have Read</h2>
+      <article class="paper-entry">
+        <h3><a href="https://doi.org/10.1016/j.robot.2021.103871" target="_blank" rel="noopener noreferrer">Coordination approaches for multi-item pickup and delivery in logistic scenarios</a></h3>
+        <p class="meta">Contini and Farinelli</p>
+      </article>
+      <article class="paper-entry">
+        <h3><a href="https://doi.org/10.65109/nnwy2634" target="_blank" rel="noopener noreferrer">Decentralized Task Assignment for Multi-item Pickup and Delivery in Logistic Scenarios</a></h3>
+        <p class="meta">Farinelli et al.</p>
+      </article>
+      <article class="paper-entry">
+        <h3><a href="https://doi.org/10.1109/lra.2021.3074883" target="_blank" rel="noopener noreferrer">Integrated Task Assignment and Path Planning for Capacitated Multi-Agent Pickup and Delivery</a></h3>
+        <p class="meta">Chen et al.</p>
+      </article>
+      <article class="paper-entry">
+        <h3><a href="https://doi.org/10.1609/socs.v15i1.21802" target="_blank" rel="noopener noreferrer">Lower and Upper Bounds for Multi-Agent Multi-Item Pickup and Delivery: When a Decoupled Approach is Good Enough (Extended Abstract)</a></h3>
+        <p class="meta">Zahradka et al.</p>
+      </article>
+      <article class="paper-entry">
+        <h3><a href="https://doi.org/10.1007/978-3-031-18192-4_7" target="_blank" rel="noopener noreferrer">Multiagent Pickup and Delivery for Capacitated Agents</a></h3>
+        <p class="meta">Çilden and Polat</p>
+      </article>
+      <article class="paper-entry">
+        <h3><a href="https://doi.org/10.1016/j.ifacol.2023.01.134" target="_blank" rel="noopener noreferrer">Quality Analysis of Multi-Agent Multi-Item Pickup and Delivery Solutions Using a Decoupled Approach</a></h3>
+        <p class="meta">Zahradka et al.</p>
+      </article>
+      <article class="paper-entry">
+        <h3><a href="https://doi.org/10.1016/j.knosys.2025.114281" target="_blank" rel="noopener noreferrer">Task assignment strategies for capacitated agents engaged in lifelong pickup and delivery tasks</a></h3>
+        <p class="meta">Çilden and Polat</p>
+      </article>
+    </section>
+
+    <section class="paper-section" aria-labelledby="interest-title">
+      <h2 id="interest-title" class="section-title">Papers That Interest Me</h2>
+      <article class="paper-entry">
+        <h3><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">Attention Is All You Need</a></h3>
+        <p class="meta">Google</p>
+      </article>
+      <article class="paper-entry">
+        <h3><a href="https://arxiv.org/pdf/2605.07835" target="_blank" rel="noopener noreferrer">Many-to-Many Multi-Agent Pickup and Delivery</a></h3>
+        <p class="meta">Ethan Schneider et al.</p>
+      </article>
+    </section>
+
+    <section class="paper-section" aria-labelledby="current-title">
+      <h2 id="current-title" class="section-title">Papers I Am Currently Reading</h2>
+      <article class="paper-entry">
+        <p class="status">Currently reading</p>
+        <h3><a href="https://doi.org/10.1016/j.tcs.2024.114897" target="_blank" rel="noopener noreferrer">Dynamic path finding for multi-load agent pickup and delivery problem</a></h3>
+        <p class="meta">Li et al.</p>
+      </article>
+    </section>
+
+    <footer class="colophon">
+      <p><a href="index.html">Return to Jigyasa Hasija's portfolio</a></p>
+    </footer>
+  </main>
+</body>
+</html>

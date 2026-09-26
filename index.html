@@ -4,19 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jigyasa Hasija — Research Portfolio</title>
-<meta name="description" content="Jigyasa Hasija — incoming Georgia Tech M.S. CS student working at the intersection of sustainable computing architectures and secure, robust AI.">
+<meta name="description" content="Jigyasa Hasija — software engineer and researcher focused on secure multi-agent systems, agent security, and distributed systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #F6F7F5;
-    --bg: #F2F7FC;
-    --ink: #14181C;
-    --navy: #1E3A5F;
-    --brass: #7D5E26;
-    --rule: #D8DAD5;
-    --muted: #5C6570;
+    --paper: #E8EEF0;
+    --bg: #18252D;
+    --ink: #E5EBEA;
+    --navy: #244451;
+    --brass: #D4A64A;
+    --rule: #33424B;
+    --muted: #A4B0B4;
+    --surface: #24343D;
+    --deep: #10212A;
+    --link: #83B8C8;
     --serif: 'Spectral', Georgia, 'Times New Roman', serif;
     --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
   }
@@ -25,7 +28,9 @@
 
   body {
     margin: 0;
-    background: var(--bg);
+    background-color: var(--bg);
+    background-image: linear-gradient(rgba(190, 215, 220, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(190, 215, 220, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
     color: var(--ink);
     font-family: var(--serif);
     font-size: 17px;
@@ -41,10 +46,10 @@
 
   /* ===== Editorial masthead band ===== */
   .masthead-band {
-    background: var(--navy);
+    background: var(--deep);
     color: var(--paper);
     padding: clamp(2.5rem, 6vw, 4rem) 0;
-    border-bottom: 4px solid #33578A;
+    border-bottom: 4px solid #1B303A;
   }
   .band-inner {
     max-width: 720px;
@@ -99,7 +104,7 @@
     object-fit: cover;
     object-position: center 20%;
     border: 3px solid rgba(246, 247, 245, 0.9);
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.30);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
   }
 
   .contact-row {
@@ -136,7 +141,7 @@
   }
 
   a:focus-visible {
-    outline: 2px solid var(--navy);
+    outline: 2px solid var(--brass);
     outline-offset: 3px;
   }
 
@@ -154,6 +159,102 @@
   }
   .lede:last-of-type { margin-bottom: 0; }
 
+  .system-visual {
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--navy);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.85rem 1rem 0.7rem;
+    margin-top: 1.5rem;
+    overflow: hidden;
+  }
+  .visual-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .visual-field {
+    position: relative;
+    height: 70px;
+    margin-top: 0.65rem;
+    border: 1px solid rgba(190, 215, 220, 0.2);
+    background-image: linear-gradient(rgba(190, 215, 220, 0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(190, 215, 220, 0.14) 1px, transparent 1px);
+    background-size: 16.666% 33.333%;
+  }
+  .visual-lane {
+    display: none;
+  }
+  .visual-lane.one { top: 14px; }
+  .visual-lane.two { top: 35px; }
+  .visual-lane.three { top: 56px; }
+  .obstacle {
+    position: absolute;
+    width: 16.666%;
+    height: 33.333%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(220, 230, 232, 0.24);
+    z-index: 1;
+  }
+  .obstacle.one { left: 33.333%; top: 0; }
+  .obstacle.two { left: 50%; top: 33.333%; }
+  .obstacle.three { left: 66.666%; top: 0; }
+  .task-node {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--brass);
+    border-radius: 50%;
+    animation: task-pulse 2.8s ease-in-out infinite;
+  }
+  .task-node.left { left: 8%; }
+  .task-node.right { right: 8%; }
+  .task-node.one { top: 10px; }
+  .task-node.two { top: 31px; animation-delay: 0.6s; }
+  .task-node.three { top: 52px; animation-delay: 1.2s; }
+  .agent {
+    position: absolute;
+    width: 25px;
+    height: 16px;
+    border: 2px solid var(--brass);
+    border-radius: 2px;
+    background: var(--paper);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+    z-index: 1;
+  }
+  .agent::before {
+    content: "• •";
+    position: absolute;
+    left: 4px;
+    top: -0.72rem;
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1rem;
+  }
+  .agent.one { animation: route-reserved 12s linear infinite; animation-delay: 0s; }
+  .agent.two { animation: route-reserved 12s linear infinite; animation-delay: -4s; }
+  @keyframes route-reserved {
+    0% { left: 8%; top: 6px; }
+    10% { left: 27%; top: 6px; }
+    20% { left: 27%; top: 27px; }
+    30% { left: 45%; top: 27px; }
+    40% { left: 45%; top: 48px; }
+    50% { left: 88%; top: 48px; }
+    60% { left: 88%; top: 27px; }
+    70% { left: 88%; top: 6px; }
+    80% { left: 88%; top: 27px; }
+    90% { left: 88%; top: 48px; }
+    100% { left: 8%; top: 48px; }
+  }
+  @keyframes task-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.25); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .agent, .task-node { animation: none; }
+  }
+
   .seeking {
     max-width: 640px;
     border-left: 3px solid var(--navy);
@@ -167,14 +268,17 @@
   /* Sections */
   .numbered { display: block; }
   .section-title {
-    font-family: var(--serif);
-    font-size: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
     font-weight: 600;
+    letter-spacing: 0.12em;
     margin: 0 0 1.25rem;
     width: fit-content;
     max-width: 100%;
-    padding: 0 0.15em;
-    background: linear-gradient(transparent 62%, rgba(30, 58, 95, 0.18) 62%);
+    padding: 0.35rem 0.7rem;
+    border-left: 3px solid var(--navy);
+    background: rgba(30, 58, 95, 0.07);
+    text-transform: uppercase;
   }
   .subhead {
     font-family: var(--mono);
@@ -198,7 +302,7 @@
   .tag-list li {
     font-family: var(--mono);
     font-size: 0.8rem;
-    background: rgba(30, 58, 95, 0.06);
+    background: rgba(255, 255, 255, 0.04);
     color: var(--ink);
     padding: 0.28rem 0.65rem;
     border-radius: 2px;
@@ -220,6 +324,13 @@
     color: var(--muted);
     margin: 0;
   }
+  .work-meta a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .work-meta a:hover,
+  .work-meta a:focus-visible { color: var(--navy); }
   .focus-tag {
     font-family: var(--mono);
     font-size: 0.78rem;
@@ -301,18 +412,101 @@
     font-size: 0.85rem;
     color: var(--muted);
   }
-  .colophon a { color: var(--navy); }
+  .colophon a { color: var(--link); }
   .colophon p { margin: 0 0 0.4rem; }
+
+  .site-nav {
+    border-bottom: 1px solid var(--rule);
+    border-top: 1px solid var(--rule);
+    padding: 0.75rem 0;
+    margin-bottom: 2.5rem;
+  }
+  .site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1.1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .site-nav a {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--link);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .site-nav a:hover,
+  .site-nav a:focus-visible { text-decoration: underline; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .work-card {
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--navy);
+    background: var(--surface);
+    padding: 1.2rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  }
+  .work-card .work-title { font-size: 1.05rem; }
+  .work-card p:last-child { margin-bottom: 0; }
+  .status {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--brass);
+    border: 1px solid rgba(125, 94, 38, 0.45);
+    padding: 0.18rem 0.4rem;
+    margin-bottom: 0.7rem;
+  }
+  .roadmap {
+    border: 1px solid var(--rule);
+    background: rgba(30, 58, 95, 0.04);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+  }
+  .roadmap p { margin-top: 0; }
+  .flow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--navy);
+    margin: 1rem 0;
+  }
+  .taxonomy {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 2rem;
+  }
+  .taxonomy .subhead { margin-top: 0; }
+  .taxonomy-group { min-width: 0; }
+  .taxonomy-note {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin: -0.3rem 0 0.6rem;
+  }
+  @media (max-width: 620px) {
+    .card-grid, .taxonomy { grid-template-columns: 1fr; }
+  }
 
 </style>
 </head>
 <body>
 
-  <header class="masthead-band">
+  <header class="masthead-band" id="about">
     <div class="band-inner">
       <div class="band-text">
-        <h1 class="name">Hi, I am Jigyasa!</h1>
-        <p class="affiliation">Georgia Institute of Technology · M.S. Computer Science · Incoming Fall 2026</p>
+        <p class="eyebrow">Software engineer · Researcher</p>
+        <h1 class="name">Jigyasa Hasija</h1>
+        <p class="affiliation">Secure Multi-Agent Systems · Agent Security · Distributed Systems</p>
+        <p class="affiliation">M.S. Computer Science, Georgia Tech · 2026-2028</p>
         <div class="contact-row">
           <a href="https://github.com/jigyasahasija" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
             <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .321.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
@@ -326,47 +520,115 @@
           <a href="https://www.instagram.com/hasijaaaa" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
             <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
-          <a href="mailto:jhasija3@gatech.edu" title="Email" aria-label="Email">
+          <a href="mailto:jigyasahasija03@gmail.com" title="Email" aria-label="Email">
             <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M1.5 5.25A2.25 2.25 0 013.75 3h16.5a2.25 2.25 0 012.25 2.25v.383l-10.5 6.3-10.5-6.3V5.25zM1.5 7.66V18.75A2.25 2.25 0 003.75 21h16.5a2.25 2.25 0 002.25-2.25V7.66l-10.02 6.012a1.5 1.5 0 01-1.46 0L1.5 7.66z"/></svg>
           </a>
-          <a class="resume" href="resume.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+          <a class="resume" href="Jigyasa%20Hasija%20CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
         </div>
       </div>
       <img class="portrait" src="portrait.jpg" alt="Jigyasa Hasija" width="172" height="172">
     </div>
   </header>
 
-  <div class="page">
+  <main class="page">
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#current-work">Current Work</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#engineering">Engineering Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#beyond">Beyond the Lab</a></li>
+        <li><a href="papers.html">Papers</a></li>
+      </ul>
+    </nav>
 
     <section class="intro">
       <p class="lede">
-        I am an incoming M.S. CS student at Georgia Tech with four years of industry software
-        engineering experience specializing in distributed backend infrastructure, cloud reliability,
-        and data compliance networks.
+        I am a software engineer and researcher focused on making autonomous multi-agent systems
+        reliable, secure, and measurable. My current research at Georgia Tech's RAIL Lab explores
+        capacitated many-to-many multi-agent pickup and delivery: scalable task allocation and
+        collision-free routing under payload constraints.
       </p>
       <p class="lede">
-        My academic and research interests lie at the intersection of <strong>Sustainable Computing
-        Architectures</strong> and <strong>Secure, Robust AI</strong>. I am driven by a central
-        question: how can we architect large-scale or agentic computing pipelines to maximize hardware
-        and energy efficiency while guaranteeing adversarial security and fault tolerance?
+        I am building toward secure multi-agent systems that coordinate through controlled tools,
+        respect permissions and operational constraints, and remain resilient to failures or
+        adversarial inputs.
       </p>
-      <div class="seeking">
-        <p>
-          I am actively seeking research opportunities
-          within Georgia Tech's computer systems, security, and AI labs.
-        </p>
+      <div class="system-visual" role="img" aria-label="Animated obstacle-aware multi-agent coordination diagram">
+        <div class="visual-label">multi-agent coordination / task allocation / obstacle-aware routing</div>
+        <div class="visual-field" aria-hidden="true">
+          <span class="visual-lane one"></span>
+          <span class="visual-lane two"></span>
+          <span class="visual-lane three"></span>
+          <span class="obstacle one"></span>
+          <span class="obstacle two"></span>
+          <span class="obstacle three"></span>
+          <span class="task-node left one"></span>
+          <span class="task-node left two"></span>
+          <span class="task-node left three"></span>
+          <span class="task-node right one"></span>
+          <span class="task-node right two"></span>
+          <span class="task-node right three"></span>
+          <span class="agent one"></span>
+          <span class="agent two"></span>
+        </div>
       </div>
     </section>
 
     <hr class="rule">
 
-    <section class="numbered">
+    <section class="numbered" id="current-work">
       <div>
-        <h2 class="section-title">Research Experience</h2>
+        <h2 class="section-title">Currently Working On</h2>
+        <div class="card-grid">
+          <article class="work-card">
+            <p class="status">Current research</p>
+            <h3 class="work-title">Capacitated Multi-Agent Pickup and Delivery</h3>
+            <p class="work-meta"><a href="https://www.gt-rail.com/" target="_blank" rel="noopener noreferrer">RAIL Lab</a> · Georgia Tech</p>
+            <p>Building the first step of a broader MAPD research program: a reproducible benchmark for payload-constrained multi-robot logistics. Current work focuses on deterministic task traces, invariant-driven simulation, fair TPMC/RMCA baselines, and conflict-free routing with reservation-table space-time A*; the next phase will develop and evaluate a many-to-many pickup-and-delivery algorithm on this foundation.</p>
+          </article>
+          <article class="work-card">
+            <p class="status">In progress · Future build direction</p>
+            <h3 class="work-title">Secure Multi-Agent Incident Response Sandbox</h3>
+            <p class="work-meta">Current build direction</p>
+            <p>Developing a simulated incident-response environment for permissioned agent coordination, tool safety, fault tolerance, and adversarial evaluation.</p>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="numbered" id="research">
+      <div>
+        <h2 class="section-title">Research</h2>
+
+        <article class="work-entry">
+          <h3 class="work-title">Reproducible Benchmarking for Capacitated Multi-Agent Pickup and Delivery</h3>
+          <p class="work-meta">Current research · <a href="https://www.gt-rail.com/" target="_blank" rel="noopener noreferrer">RAIL Lab</a> · Georgia Tech</p>
+          <p>I am building a reproducible framework for capacitated many-to-many multi-agent pickup and delivery (MAPD) in payload-constrained logistics environments, with identical task traces, maps, starting states, horizons, and seeds for fair comparison.</p>
+          <p>Benchmarking is the first phase, not the endpoint: a frozen runnable baseline, explicit <code>Task</code>, <code>Agent</code>, <code>ScheduleEvent</code>, and <code>WorldState</code> models, replayable event logs, and invariant checks for capacity, ordering, assignment, conflicts, deadlines, and executed cost.</p>
+          <p>After validation, I will develop and evaluate a many-to-many MAPD algorithm. Initial work uses TPMC and RMCA under capacity 1, with A* estimates and reservation-table space-time A*; later experiments will study higher-capacity insertion, allocation, routing, throughput, planning time, and execution cost.</p>
+          <h3 class="subhead">Research methods</h3>
+          <ul class="prose-list">
+            <li>Frozen runnable repository baseline</li>
+            <li>Replayable task traces and identical seeds</li>
+            <li>Invariant-driven validation</li>
+            <li>A* shortest-path estimates</li>
+            <li>Reservation-table space-time A*</li>
+            <li>TPMC and RMCA initial baselines</li>
+            <li>Independent event-log replay</li>
+            <li>Multi-seed evaluation</li>
+            <li>Algorithm development after benchmark validation</li>
+          </ul>
+        </article>
 
         <article class="work-entry">
           <h3 class="work-title">FPGA Implementation of Residue Number System based Digital Differentiator</h3>
-          <p class="work-meta">Undergraduate Research · Advised by Prof. Tarun Kumar Rawat · Netaji Subhas Institute of Technology</p>
+          <p class="work-meta">Prior Research · Advised by Prof. Tarun Kumar Rawat · Netaji Subhas Institute of Technology</p>
           <ul class="prose-list">
             <li><strong>The Problem:</strong> Traditional binary arithmetic introduces severe
               computational carry-propagation delays and power overheads when executing high-frequency
@@ -392,14 +654,14 @@
 
     <hr class="rule">
 
-    <section class="numbered">
+    <section class="numbered" id="engineering">
       <div>
         <h2 class="section-title">Selected Engineering &amp; Systems Projects</h2>
 
         <article class="work-entry">
-          <h3 class="work-title">Agentic Workflow Frameworks via Model Context Protocol (MCP)</h3>
+          <h3 class="work-title">LLM-Assisted Test Automation and MCP Tool Reliability</h3>
           <p class="work-meta">Software Development Engineer · Veeam</p>
-          <p class="focus-tag">Focus: LLM Tool Use · Protocol Optimization · Resilient System Automation</p>
+          <p class="focus-tag">MCP · TypeScript · Playwright · LLM tool use · Failure analysis</p>
           <ul class="prose-list">
             <li>Architected proof-of-concepts exploring the integration of Anthropic's Model Context
               Protocol (MCP) with TypeScript-based browser automation engines.</li>
@@ -410,9 +672,9 @@
         </article>
 
         <article class="work-entry">
-          <h3 class="work-title">Distributed Caching &amp; Multi-Tenant Vulnerability Remediation</h3>
+          <h3 class="work-title">Multi-Tenant Systems Reliability and Zero-Trust Isolation</h3>
           <p class="work-meta">Software Development Engineer · Microsoft Security Organization</p>
-          <p class="focus-tag">Focus: Large-Scale Cloud Systems · System Reliability · Software Security</p>
+          <p class="focus-tag">Distributed systems · Cloud security · Tenant isolation · Reliability</p>
           <ul class="prose-list">
             <li>Authored a technical design paper evaluating distributed caching strategies for a
               compliance-management service to mitigate heavy API latency bottlenecks.</li>
@@ -443,51 +705,38 @@
 
     <hr class="rule">
 
-    <section class="numbered">
+    <section class="numbered" id="skills">
       <div>
-        <h2 class="section-title">Technical Stack</h2>
-
-        <h3 class="subhead">Systems &amp; Distributed Computing</h3>
-        <ul class="tag-list">
-          <li>C#</li>
-          <li>Java</li>
-          <li>Python</li>
-          <li>C++</li>
-          <li>Spring Boot</li>
-          <li>.NET</li>
-          <li>RESTful APIs</li>
-          <li>SQL</li>
-          <li>KQL</li>
-        </ul>
-
-        <h3 class="subhead">Cloud &amp; Infrastructure</h3>
-        <ul class="tag-list">
-          <li>Azure (Durable Functions, CosmosDB, Kusto)</li>
-          <li>AWS (Lambda, CDK, CloudWatch)</li>
-        </ul>
-
-        <h3 class="subhead">Hardware &amp; Edge Environments</h3>
-        <ul class="tag-list">
-          <li>Verilog HDL</li>
-          <li>Xilinx Vivado</li>
-          <li>System Generator for DSP</li>
-          <li>MATLAB</li>
-          <li>Embedded C</li>
-        </ul>
-
-        <h3 class="subhead">Emerging AI Architecture</h3>
-        <ul class="tag-list">
-          <li>Model Context Protocol (MCP)</li>
-          <li>Claude Code</li>
-          <li>Prompt Engineering</li>
-          <li>Agentic Tool Workflows</li>
-        </ul>
+        <h2 class="section-title">Skills</h2>
+        <p class="taxonomy-note">Demonstrated in production/research, with current research and development focus clearly marked.</p>
+        <div class="taxonomy">
+          <div class="taxonomy-group"><h3 class="subhead">Agentic Systems</h3><ul class="tag-list"><li>Model Context Protocol (MCP)</li><li>TypeScript</li><li>Playwright automation</li><li>LLM tool use</li><li>Agent workflow reliability</li></ul></div>
+          <div class="taxonomy-group"><h3 class="subhead">Current Research and Development Focus</h3><p class="taxonomy-note">Current research/development focus</p><ul class="tag-list"><li>Multi-agent task allocation</li><li>Capacitated MAPD</li><li>Collision-free routing</li><li>Agent permissions</li><li>Least-privilege tool access</li><li>Adversarial evaluation</li><li>Fault tolerance</li></ul></div>
+          <div class="taxonomy-group"><h3 class="subhead">Distributed Systems and Backend</h3><ul class="tag-list"><li>C#</li><li>.NET</li><li>Java</li><li>Python</li><li>Spring Boot</li><li>REST APIs</li><li>SQL</li><li>KQL</li><li>Microservices</li></ul></div>
+          <div class="taxonomy-group"><h3 class="subhead">Cloud, Reliability, and Security</h3><ul class="tag-list"><li>Azure Durable Functions</li><li>Cosmos DB</li><li>Kusto</li><li>AWS Lambda</li><li>AWS CDK</li><li>CloudWatch</li><li>Jenkins</li><li>CI/CD</li><li>Multi-tenant isolation</li><li>Zero-trust data boundaries</li></ul></div>
+          <div class="taxonomy-group"><h3 class="subhead">Hardware and Prior Research</h3><ul class="tag-list"><li>Verilog HDL</li><li>Xilinx Vivado</li><li>System Generator for DSP</li><li>MATLAB</li><li>Embedded C</li><li>FPGA systems</li></ul></div>
+        </div>
       </div>
     </section>
 
     <hr class="rule">
 
-    <section class="numbered">
+    <section class="numbered" id="roadmap">
+      <div>
+        <h2 class="section-title">Building Next</h2>
+        <div class="roadmap">
+          <p class="status">In progress · Future build direction</p>
+          <h3 class="work-title">Secure Multi-Agent Incident Response Sandbox</h3>
+          <p>A simulated cloud incident-response environment in which specialized agents investigate and respond to incidents through controlled tools and explicit permissions.</p>
+          <p class="flow" aria-label="Planned incident response flow">Triage → Investigate → Plan → Policy Check → Human Approval when needed → Execute → Verify</p>
+          <ul class="prose-list"><li>Triage agent</li><li>Evidence-retrieval agent</li><li>Investigation agent</li><li>Response-planning agent</li><li>Policy guardian</li><li>Executor</li><li>Verifier</li><li>Per-agent identity and scoped permissions</li><li>Human approval for consequential actions</li><li>Audit trail, tool safety, failure recovery, and adversarial evaluation</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="numbered" id="beyond">
       <div>
         <h2 class="section-title">Beyond the Lab</h2>
 
@@ -522,8 +771,8 @@
 
           <h4 class="subhead">Curiously flipping through right now</h4>
           <ul class="prose-list books">
-            <li><em>Our Evenings</em> by Alan Hollinghurst, savoring its beautifully layered,
-              atmospheric storytelling.</li>
+            <li><em>Letters from New York</em> by Helene Hanff.</li>
+            <li><em>The Guardian and the Thief</em> by Megha Majumdar.</li>
             <li><em>The Hare with Amber Eyes</em> by Edmund de Waal (A fascinatingly detailed trace
               of a hidden inheritance across generations)</li>
             <li><em>A Brief History of Black Holes</em> by Becky Smethurst, because sometimes software
@@ -559,12 +808,12 @@
     </section>
 
     <footer class="colophon">
-      <p>Correspondence to <a href="mailto:jhasija3@gatech.edu">jhasija3@gatech.edu</a>. Also on
+      <p>Correspondence to <a href="mailto:jigyasahasija03@gmail.com">jigyasahasija03@gmail.com</a>. Also on
         <a href="https://github.com/jigyasahasija" target="_blank" rel="noopener noreferrer">GitHub</a> and
         <a href="https://www.linkedin.com/in/jigyasa-hasija" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
-      <p>Last updated July 2026</p>
+      <p>Last updated September 2026</p>
     </footer>
 
-  </div>
+  </main>
 </body>
 </html>
