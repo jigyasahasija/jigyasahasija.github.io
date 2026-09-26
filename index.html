@@ -27,6 +27,8 @@
   * { box-sizing: border-box; }
 
   body {
+    position: relative;
+    isolation: isolate;
     margin: 0;
     background-color: var(--bg);
     background-image: linear-gradient(rgba(190, 215, 220, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(190, 215, 220, 0.06) 1px, transparent 1px);
@@ -36,6 +38,31 @@
     font-size: 17px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+  }
+
+  .grid-glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .grid-glow span {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(131, 184, 200, 0.35);
+    background: rgba(131, 184, 200, 0.13);
+    box-shadow: 0 0 12px rgba(131, 184, 200, 0.1);
+    opacity: 0;
+    animation: grid-trail 7.2s linear forwards;
+  }
+  @keyframes grid-trail {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .grid-glow { display: none; }
   }
 
   .page {
@@ -330,15 +357,15 @@
     text-underline-offset: 3px;
   }
   .work-meta a:hover,
-  .work-meta a:focus-visible { color: var(--navy); }
+  .work-meta a:focus-visible { color: var(--brass); }
   .focus-tag {
     font-family: var(--mono);
     font-size: 0.78rem;
-    color: var(--navy);
+    color: var(--link);
     margin: 0.5rem 0 0.4rem;
   }
   .work-entry p { margin: 0.4rem 0; }
-  .work-entry a { color: var(--navy); }
+  .work-entry a { color: var(--link); }
 
   /* Detail lists */
   .prose-list {
@@ -355,7 +382,7 @@
     content: "▸";
     position: absolute;
     left: 0;
-    color: var(--navy);
+    color: var(--brass);
   }
   .prose-list strong { color: var(--ink); }
   .prose-list li:last-child { margin-bottom: 0; }
@@ -391,6 +418,9 @@
 
   .beyond-block { margin-bottom: 1.75rem; }
   .beyond-block:last-child { margin-bottom: 0; }
+  .beyond-block a { color: var(--link); }
+  .beyond-block a:hover,
+  .beyond-block a:focus-visible { color: var(--brass); }
   .beyond-head {
     font-family: var(--serif);
     font-size: 1.3rem;
@@ -476,7 +506,7 @@
     font-family: var(--mono);
     font-size: 0.78rem;
     line-height: 1.8;
-    color: var(--navy);
+    color: var(--link);
     margin: 1rem 0;
   }
   .taxonomy {
@@ -499,6 +529,7 @@
 </style>
 </head>
 <body>
+  <div class="grid-glow" aria-hidden="true"></div>
 
   <header class="masthead-band" id="about">
     <div class="band-inner">
@@ -721,21 +752,6 @@
 
     <hr class="rule">
 
-    <section class="numbered" id="roadmap">
-      <div>
-        <h2 class="section-title">Building Next</h2>
-        <div class="roadmap">
-          <p class="status">In progress · Future build direction</p>
-          <h3 class="work-title">Secure Multi-Agent Incident Response Sandbox</h3>
-          <p>A simulated cloud incident-response environment in which specialized agents investigate and respond to incidents through controlled tools and explicit permissions.</p>
-          <p class="flow" aria-label="Planned incident response flow">Triage → Investigate → Plan → Policy Check → Human Approval when needed → Execute → Verify</p>
-          <ul class="prose-list"><li>Triage agent</li><li>Evidence-retrieval agent</li><li>Investigation agent</li><li>Response-planning agent</li><li>Policy guardian</li><li>Executor</li><li>Verifier</li><li>Per-agent identity and scoped permissions</li><li>Human approval for consequential actions</li><li>Audit trail, tool safety, failure recovery, and adversarial evaluation</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <hr class="rule">
-
     <section class="numbered" id="beyond">
       <div>
         <h2 class="section-title">Beyond the Lab</h2>
@@ -815,5 +831,55 @@
     </footer>
 
   </main>
+  <script>
+    // Walk between adjacent squares, leaving trails that fade behind each head.
+    const gridGlow = document.querySelector('.grid-glow');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let walkers = [];
+    let timer;
+    function advanceGrid() {
+      const columns = Math.max(1, Math.floor(document.body.clientWidth / 28));
+      const firstRow = Math.ceil(Math.max(window.scrollY,
+        document.querySelector('.masthead-band').offsetHeight) / 28);
+      const lastRow = Math.floor(Math.min(document.body.offsetHeight,
+        window.scrollY + window.innerHeight) / 28) - 1;
+      if (lastRow < firstRow) return;
+      for (let i = 0; i < 2; i++) {
+        let walker = walkers[i];
+        if (!walker || walker.steps <= 0 || walker.column >= columns ||
+            walker.row < firstRow || walker.row > lastRow) {
+          walker = walkers[i] = {
+            column: Math.floor(Math.random() * columns),
+            row: firstRow + Math.floor(Math.random() * (lastRow - firstRow + 1)),
+            steps: 5 + Math.floor(Math.random() * 36)
+          };
+        }
+        const neighbors = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+          .map(([dx, dy]) => [walker.column + dx, walker.row + dy])
+          .filter(([column, row]) => column >= 0 && column < columns &&
+            row >= firstRow && row <= lastRow);
+        if (!neighbors.length) continue;
+        [walker.column, walker.row] = neighbors[Math.floor(Math.random() * neighbors.length)];
+        walker.steps--;
+        const cell = document.createElement('span');
+        cell.style.left = `${walker.column * 28}px`;
+        cell.style.top = `${walker.row * 28}px`;
+        cell.addEventListener('animationend', () => cell.remove(), { once: true });
+        gridGlow.appendChild(cell);
+      }
+    }
+    function syncGridAnimation() {
+      clearInterval(timer);
+      gridGlow.replaceChildren();
+      walkers = [];
+      if (!reducedMotion.matches && !document.hidden) {
+        advanceGrid();
+        timer = setInterval(advanceGrid, 360);
+      }
+    }
+    reducedMotion.addEventListener('change', syncGridAnimation);
+    document.addEventListener('visibilitychange', syncGridAnimation);
+    syncGridAnimation();
+  </script>
 </body>
 </html>
