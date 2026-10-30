@@ -689,6 +689,23 @@
       <div>
         <h2 class="section-title">Selected Engineering &amp; Systems Projects</h2>
 
+        <article class="work-entry" id="nl2sql">
+          <h3 class="work-title">Schema-Grounded Natural Language to SQL</h3>
+          <p class="work-meta">Database Systems Project · Georgia Tech</p>
+          <p class="focus-tag">Python · SQLite · Gemma / Ollama · SQLGlot · Slurm</p>
+          <ul class="prose-list">
+            <li>Built an LLM pipeline that translates natural-language questions into SQLite queries
+              using schema-aware prompts, retrieved training examples, and selective SQL repair.</li>
+            <li>Improved combined validation execution accuracy from <strong>26.6% to 72.2%</strong>
+              across 79 questions on two databases, comparing generated query results with reference results.</li>
+            <li>Implemented SQL abstract syntax tree checks, bounded correction, and response caching;
+              ran GPU evaluations on PACE ICE with Slurm and added 15 offline unit tests.</li>
+            <li>Compared prompting, retrieval, and candidate-selection strategies. Targeted corrections
+              preserved correct answers more reliably than broad rewrites in these experiments.</li>
+          </ul>
+          <p><a href="https://github.com/jigyasahasija/jigyasahasija.github.io/tree/main/projects/schema-grounded-nl2sql" target="_blank" rel="noopener noreferrer">View source code and methodology on GitHub</a></p>
+        </article>
+
         <article class="work-entry">
           <h3 class="work-title">LLM-Assisted Test Automation and MCP Tool Reliability</h3>
           <p class="work-meta">Software Development Engineer · Veeam</p>
@@ -739,9 +756,10 @@
     <section class="numbered" id="skills">
       <div>
         <h2 class="section-title">Skills</h2>
-        <p class="taxonomy-note">Demonstrated in production/research, with current research and development focus clearly marked.</p>
+        <p class="taxonomy-note">Demonstrated through professional work, research, and projects, with current research and development focus clearly marked.</p>
         <div class="taxonomy">
           <div class="taxonomy-group"><h3 class="subhead">Agentic Systems</h3><ul class="tag-list"><li>Model Context Protocol (MCP)</li><li>TypeScript</li><li>Playwright automation</li><li>LLM tool use</li><li>Agent workflow reliability</li></ul></div>
+          <div class="taxonomy-group"><h3 class="subhead">LLM Applications and Evaluation</h3><ul class="tag-list"><li>Schema-aware prompting</li><li>Few-shot learning</li><li>Retrieval-augmented prompting</li><li>SQL AST analysis (SQLGlot)</li><li>SQLite</li><li>Ollama model serving</li><li>Execution-based evaluation</li><li>Regression analysis</li><li>Slurm GPU workflows</li></ul></div>
           <div class="taxonomy-group"><h3 class="subhead">Current Research and Development Focus</h3><p class="taxonomy-note">Current research/development focus</p><ul class="tag-list"><li>Multi-agent task allocation</li><li>Capacitated MAPD</li><li>Collision-free routing</li><li>Agent permissions</li><li>Least-privilege tool access</li><li>Adversarial evaluation</li><li>Fault tolerance</li></ul></div>
           <div class="taxonomy-group"><h3 class="subhead">Distributed Systems and Backend</h3><ul class="tag-list"><li>C#</li><li>.NET</li><li>Java</li><li>Python</li><li>Spring Boot</li><li>REST APIs</li><li>SQL</li><li>KQL</li><li>Microservices</li></ul></div>
           <div class="taxonomy-group"><h3 class="subhead">Cloud, Reliability, and Security</h3><ul class="tag-list"><li>Azure Durable Functions</li><li>Cosmos DB</li><li>Kusto</li><li>AWS Lambda</li><li>AWS CDK</li><li>CloudWatch</li><li>Jenkins</li><li>CI/CD</li><li>Multi-tenant isolation</li><li>Zero-trust data boundaries</li></ul></div>
@@ -827,7 +845,7 @@
       <p>Correspondence to <a href="mailto:jigyasahasija03@gmail.com">jigyasahasija03@gmail.com</a>. Also on
         <a href="https://github.com/jigyasahasija" target="_blank" rel="noopener noreferrer">GitHub</a> and
         <a href="https://www.linkedin.com/in/jigyasa-hasija" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
-      <p>Last updated September 2026</p>
+      <p>Last updated October 2026</p>
     </footer>
 
   </main>
